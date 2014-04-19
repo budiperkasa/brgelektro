@@ -19,6 +19,7 @@ $_['entry_filter'] = 'Filter';
 $_['entry_name'] = 'Nama Kategori:';
 $_['entry_meta_keyword'] 	 = 'Meta Tag Keywords:';
 $_['entry_meta_description'] = 'Deskripsi Meta Tag:';
+$_['entry_deskripsi_tambahan'] = 'Deskripsi Tambahan:';
 $_['entry_description']= 'Deskripsi:';
 $_['entry_parent'] = 'Kategori Induk:';
 $_['entry_store']= 'Toko:';
