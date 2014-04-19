@@ -1,0 +1,65 @@
+<modification>
+	<id>Caonical Product URL with Category path 2</id>
+	<version>1.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>http://www.opencart-extensions.co.uk</author>
+	<file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="replace"><![CDATA[$this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id']), 'canonical');]]></search>
+			<add><![CDATA[if($this->model_catalog_product->getCategoryPath($this->request->get['product_id'])!='0'){
+    $this->document->addLink($this->url->link('product/product', 'path=' . $this->model_catalog_product->getCategoryPath($this->request->get['product_id']) . '&product_id=' . $this->request->get['product_id']), 'canonical');
+}else{
+    $this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id']), 'canonical');
+}]]></add>
+		</operation>
+	</file>
+	<file name="catalog/model/catalog/product.php">
+		<operation>
+			<search position="before" offset="1"><![CDATA[?>]]></search>
+			<add><![CDATA[
+   public function getCategoryPath($product_id) {
+      $query = $this->db->query("SELECT category_id AS catid FROM " . DB_PREFIX . "category WHERE category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "' ) ORDER BY sort_order asc LIMIT 1");
+      
+      if(array_key_exists('catid', $query->row)) {
+         $path = array();
+         $path[0] = $query->row['catid'];
+         
+         $query = $this->db->query("SELECT parent_id AS pid FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$path[0] . "'");
+
+         $parent = $query->row['pid'];
+         
+         $p = 1;
+         while($parent>0){
+            $path[$p] = $parent;
+            
+            $query = $this->db->query("SELECT parent_id AS pid FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$parent . "'");
+            $parent = $query->row['pid'];
+            $p++;
+         }
+      
+         $path = array_reverse($path);
+         
+         $fullpath = '';
+         
+         foreach($path as $val){
+            $fullpath .= '_'.$val;
+         }
+      
+         return ltrim($fullpath, '_');
+      }else{
+         return '0';
+      }
+   }]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/category.php">
+          <operation>
+            <search position="after"><![CDATA[
+            $this->document->setKeywords($category_info['meta_keyword']);
+            ]]></search>
+            <add><![CDATA[
+         $this->document->addLink($this->url->link('product/category', 'path=' . $this->request->get['path']), 'canonical');
+            ]]></add>
+        </operation>
+   </file>
+</modification>
