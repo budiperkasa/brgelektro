@@ -10,7 +10,7 @@ class ModelCatalogCategory extends Model {
 		}
 		
 		foreach ($data['category_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', deskripsi_tambahan = '".$this->db->escape($value['deskripsi_tambahan'])."', description = '" . $this->db->escape($value['description']) . "'");
 		}
 
 		// MySQL Hierarchical Data Closure Table Pattern
@@ -64,7 +64,7 @@ class ModelCatalogCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'");
 
 		foreach ($data['category_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', deskripsi_tambahan = '".$this->db->escape($value['deskripsi_tambahan'])."', description = '" . $this->db->escape($value['description']) . "'");
 		}
 		
 		// MySQL Hierarchical Data Closure Table Pattern
@@ -240,6 +240,7 @@ class ModelCatalogCategory extends Model {
 				'name'             => $result['name'],
 				'meta_keyword'     => $result['meta_keyword'],
 				'meta_description' => $result['meta_description'],
+                                'deskripsi_tambahan' => $result['deskripsi_tambahan'],
 				'description'      => $result['description']
 			);
 		}
