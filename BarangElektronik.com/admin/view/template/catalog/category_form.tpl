@@ -44,6 +44,10 @@
                 <td><?php echo $entry_description; ?></td>
                 <td><textarea name="category_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['description'] : ''; ?></textarea></td>
               </tr>
+              <tr>
+                <td><?php echo 'Deskripsi 2:'; ?></td>
+                <td><textarea name="category_description[<?php echo $language['language_id']; ?>][deskripsi_tambahan]" cols="150" rows="18"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['deskripsi_tambahan'] : ''; ?></textarea></td>
+              </tr>
             </table>
           </div>
           <?php } ?>
