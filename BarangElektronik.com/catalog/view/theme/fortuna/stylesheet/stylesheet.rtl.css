@@ -1,0 +1,83 @@
+/*  
+Theme Name: Fortuna
+Version: 1.3.0
+Description: RTL compatibility styles
+*/
+
+html {
+	direction:rtl;
+	text-align:right;
+}
+
+/* Header
+---------------------------------- */
+
+.navbar .nav {
+	right: 0;
+	float: right;
+	margin: 0 0 0 10px;
+}
+.navbar .nav > li {
+	display: block;
+	float: right;
+}
+.navbar-inner {
+	padding-right:0;
+}
+
+/* Header styles
+---------------------------------- */
+.heading {
+	text-align: right;
+}
+.nav-tabs > li, .nav-pills > li {
+	float: right;
+}
+
+@media only screen and (max-width: 767px) {
+	.btn-navbar {
+		float: left;
+	}
+	.navbar .nav > li {
+		float: none;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	#maincontent.span12 .flexslider {
+		margin-right: -10px;
+	}
+}
+
+/* Forms
+---------------------------------- */
+.radio, .checkbox {
+	padding-right: 18px;
+	padding-left:0;
+}
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+	float: right;
+	margin-right: -18px;
+	margin-left: 0;
+}
+.contentset .inner {
+	text-align:right;
+}
+.form-horizontal .control-label {
+	float: right;
+	text-align: right;
+}
+.form-horizontal .controls {
+	margin-right: 160px;
+}
+
+/* Categories
+---------------------------------- */
+.category-info .image {
+	float: right;
+	margin-left: 15px;
+	margin-right: 0;
+}
+.category-list ul {
+	float: right;
+}

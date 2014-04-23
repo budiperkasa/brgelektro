@@ -4619,6 +4619,7 @@ Tags: fortuna, opencart, everthemes
 	text-align: center;
 	height: 22px;
 	z-index: 99;
+        right: -25px;
 }
 .slideshow .nivo-controlNav a {
 	vertical-align: top;
